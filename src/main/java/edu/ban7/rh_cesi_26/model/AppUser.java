@@ -1,6 +1,8 @@
 package edu.ban7.rh_cesi_26.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +23,12 @@ public class AppUser {
     private Integer id;
 
     @Column(nullable = false, unique = true)
+    @NotBlank
+    @Email
     private String email;
 
     @Column(nullable = false)
+    @NotBlank
     private String password;
 
     @ManyToMany

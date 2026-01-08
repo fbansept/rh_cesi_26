@@ -22,4 +22,7 @@ public class Resource {
     @ManyToOne(optional = false)
     private TypeResource type;
 
+    @ManyToOne(optional = false)
+    private AppUser owner;
+
 }
