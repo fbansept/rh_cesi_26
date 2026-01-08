@@ -9,36 +9,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Resource {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(ResourceView.class)
     private Integer id;
 
-    @JsonView({AppUserView.class,ResourceView.class})
-    private String name;
-
-    private String description;
-
-    @ManyToOne(optional = false)
-    private TypeResource type;
-
-    @ManyToOne(optional = false)
-//    @JsonView(AppUserView.class) SURTOUT NE PAS AJOUTER LE JSONVIEW AppUserView
-    private AppUser owner;
-
-
-    @OneToMany(mappedBy = "resource")
     @JsonView(ResourceView.class)
-    private List<Comment> comments = new ArrayList<>();
+    private String content;
+
+    @ManyToOne(optional = false)
+    private Resource resource;
+
+    @ManyToOne(optional = false)
+    @JsonView(ResourceView.class)
+    private AppUser author;
 
 }

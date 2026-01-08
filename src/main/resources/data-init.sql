@@ -15,3 +15,8 @@ INSERT INTO favorite (app_user_id, favorite_id) VALUES
     (2 , 1),
     (2 , 2);
 
+INSERT INTO comment (content, author_id, resource_id) VALUES
+    ('Un super film', 1, 1),
+    ('J''ai aimé',2 , 1),
+    ('Une super musique',1 , 2);
+

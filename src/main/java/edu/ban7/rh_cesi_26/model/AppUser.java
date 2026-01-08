@@ -2,6 +2,7 @@ package edu.ban7.rh_cesi_26.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import edu.ban7.rh_cesi_26.view.AppUserView;
+import edu.ban7.rh_cesi_26.view.ResourceView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -28,7 +29,7 @@ public class AppUser {
     @Column(nullable = false, unique = true)
     @NotBlank
     @Email
-    @JsonView(AppUserView.class)
+    @JsonView({AppUserView.class,ResourceView.class})
     private String email;
 
     @Column(nullable = false)
