@@ -1,7 +1,9 @@
 package edu.ban7.rh_cesi_26.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import edu.ban7.rh_cesi_26.dao.ResourceDao;
 import edu.ban7.rh_cesi_26.model.Resource;
+import edu.ban7.rh_cesi_26.view.ResourceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +20,13 @@ public class ResourceController {
     private ResourceDao resourceDao;
 
     @GetMapping("/list")
+    @JsonView(ResourceView.class)
     public List<Resource> getResources() {
         return resourceDao.findAll();
     }
 
     @GetMapping("/{id}")
+    @JsonView(ResourceView.class)
     public ResponseEntity<Resource> get(@PathVariable int id) {
 
         Optional<Resource> optionalResource = resourceDao.findById(id);
@@ -36,6 +40,7 @@ public class ResourceController {
     }
 
     @PostMapping
+    @JsonView(ResourceView.class)
     public ResponseEntity<Resource> create(@RequestBody Resource resource) {
         resourceDao.save(resource);
 
@@ -58,6 +63,7 @@ public class ResourceController {
     }
 
     @PutMapping("/{id}")
+    @JsonView(ResourceView.class)
     public ResponseEntity<Resource> update(
             @PathVariable int id,
             @RequestBody Resource resource) {

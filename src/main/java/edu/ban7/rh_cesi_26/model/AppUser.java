@@ -1,5 +1,7 @@
 package edu.ban7.rh_cesi_26.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import edu.ban7.rh_cesi_26.view.AppUserView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -20,11 +22,13 @@ public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(AppUserView.class)
     private Integer id;
 
     @Column(nullable = false, unique = true)
     @NotBlank
     @Email
+    @JsonView(AppUserView.class)
     private String email;
 
     @Column(nullable = false)
@@ -37,4 +41,7 @@ public class AppUser {
             inverseJoinColumns = @JoinColumn(name = "favorite_id"))
     private List<Resource> favorites = new ArrayList<>();
 
+    @OneToMany(mappedBy = "owner")
+    @JsonView(AppUserView.class)
+    private List<Resource> createdResources = new ArrayList<>();
 }
