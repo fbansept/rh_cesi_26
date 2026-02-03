@@ -21,7 +21,7 @@ public class Resource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(ResourceView.class)
+    @JsonView({AppUserView.class,ResourceView.class})
     private Integer id;
 
     @JsonView({AppUserView.class,ResourceView.class})

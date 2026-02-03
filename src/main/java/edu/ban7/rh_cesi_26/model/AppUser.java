@@ -21,19 +21,22 @@ import java.util.List;
 @Entity
 public class AppUser {
 
+    public interface OnCreate{}
+    public interface OnUpdate{}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView(AppUserView.class)
     private Integer id;
 
     @Column(nullable = false, unique = true)
-    @NotBlank
-    @Email
+    @NotBlank(groups = {OnCreate.class, OnUpdate.class})
+    @Email(groups = {OnCreate.class, OnUpdate.class})
     @JsonView({AppUserView.class,ResourceView.class})
     private String email;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotBlank(groups = {OnCreate.class})
     private String password;
 
     @ManyToMany
@@ -45,4 +48,8 @@ public class AppUser {
     @OneToMany(mappedBy = "owner")
     @JsonView(AppUserView.class)
     private List<Resource> createdResources = new ArrayList<>();
+
+    public void setEmail(String email) {
+        this.email = email.toLowerCase();
+    }
 }
