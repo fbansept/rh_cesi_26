@@ -112,7 +112,9 @@ public class MockAppUserDao implements AppUserDao {
                     "a@a.com",
                     "root",
                     new ArrayList<>(),
-                    new ArrayList<>()));
+                    new ArrayList<>(),
+                    true)
+            );
         }
 
         return Optional.empty();
@@ -171,5 +173,10 @@ public class MockAppUserDao implements AppUserDao {
     @Override
     public Page<AppUser> findAll(Pageable pageable) {
         return null;
+    }
+
+    @Override
+    public Optional<AppUser> findByEmail(String email) {
+        return Optional.empty();
     }
 }

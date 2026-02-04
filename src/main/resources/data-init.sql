@@ -1,6 +1,7 @@
-INSERT INTO app_user (email, password) VALUES
-    ('a@a.com', 'root'),
-    ('b@b.com', 'root');
+/*mot de passe = root*/
+INSERT INTO app_user (email, password, admin) VALUES
+    ('a@a.com', '$2a$10$xzwYLnZ37To2ejK0nmPhF.LYepZBRWYkE.F93MGU6oFKAK9D.bOsy', 1),
+    ('b@b.com', '$2a$10$xzwYLnZ37To2ejK0nmPhF.LYepZBRWYkE.F93MGU6oFKAK9D.bOsy', 0);
 
 INSERT INTO type_resource(name) VALUES
     ('Video'),

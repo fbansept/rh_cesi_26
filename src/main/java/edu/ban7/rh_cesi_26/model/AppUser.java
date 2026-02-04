@@ -10,7 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +51,8 @@ public class AppUser {
     @OneToMany(mappedBy = "owner")
     @JsonView(AppUserView.class)
     private List<Resource> createdResources = new ArrayList<>();
+
+    private boolean admin = false;
 
     public void setEmail(String email) {
         this.email = email.toLowerCase();
