@@ -1,0 +1,23 @@
+meta {
+  name: maj user
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/api/app-user/2
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email" : "d@d.fr",
+    "password" : "toto"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
